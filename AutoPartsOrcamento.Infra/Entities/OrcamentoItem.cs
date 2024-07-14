@@ -1,7 +1,6 @@
 ﻿namespace AutoPartsOrcamento.Infra.Entities;
 public class OrcamentoItem : Entity
 {
-    
     public Guid OrcamentoId { get;  set; } 
     public Orcamento Orcamento { get;  set; } = null!;
     public Guid ProdutoId { get;  set; }

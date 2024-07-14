@@ -1,56 +1,56 @@
-﻿using AutoPartsOrcamento.Comunicacao.Request.Cliente;
+using AutoPartsOrcamento.Comunicacao.Request.Cliente;
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
 using AutoPartsOrcamento.Infra;
-using AutoPartsOrcamento.Infra.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Register;
+namespace AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Update;
 
-public class RegisterClienteUseCase(AppDbContext dbContext)
+public class UpdateClienteUseCase(AppDbContext dbContext)
 {
-
     private readonly AppDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
-    public async Task<Response<ResponseClienteJson>> Execute(CreateClienteRequest request)
+    public async Task<Response<ResponseClienteJson>> Execute(UpdateClienteRequest request)
     {
+        Validate(request);
         
-        Validate(request);    
-        
-        var cliente = new Cliente
+        var cliente = await _dbContext.Clientes.FirstOrDefaultAsync(x => x.Id == request.Id);
+
+        if (cliente is null)
         {
-            Nome = request.Nome,
-            Email = request.Email,
-            CpfCnpj = request.CpfCnpj,
-            Telefone = request.Telefone,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
-        };
+            throw new NotFoundException("Cliente não encontrado.");
+        }
+
+        cliente.Nome = request.Nome;
+        cliente.CpfCnpj = request.CpfCnpj;
+        cliente.Email = request.Email;
+        cliente.Telefone = request.Telefone;
+        cliente.UpdatedAt = DateTime.UtcNow;
         
-        
-        await _dbContext.Clientes.AddAsync(cliente);
         await _dbContext.SaveChangesAsync();
-            
-        return new Response<ResponseClienteJson>()
+
+        return new Response<ResponseClienteJson>
         {
             Data = [new ResponseClienteJson
             {
                 Id = cliente.Id,
                 Nome = cliente.Nome,
-                Telefone = cliente.Telefone,
                 CpfCnpj = cliente.CpfCnpj,
                 Email = cliente.Email,
+                Telefone = cliente.Telefone,
                 CreatedAt = cliente.CreatedAt,
                 UpdatedAt = cliente.UpdatedAt
             }]
         };
     }
-    
-    private void Validate(CreateClienteRequest request)
-    {
-        var validator = new RegisterClienteValidator();
-        var result = validator.Validate(request);
 
+    private void Validate(UpdateClienteRequest request)
+    {
+        var validator = new UpdateClienteValidator();
+        
+        var result = validator.Validate(request);
+        
         if (result.IsValid is false)
         {
             var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
@@ -58,4 +58,5 @@ public class RegisterClienteUseCase(AppDbContext dbContext)
             throw new ErrorOnValidateException(errorMessages);
         }
     }
+    
 }

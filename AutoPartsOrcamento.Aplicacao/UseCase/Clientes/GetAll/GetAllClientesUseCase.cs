@@ -1,4 +1,6 @@
 using AutoPartsOrcamento.Comunicacao;
+using AutoPartsOrcamento.Comunicacao.Request;
+using AutoPartsOrcamento.Comunicacao.Request.Cliente;
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
 using AutoPartsOrcamento.Infra;
@@ -23,6 +25,9 @@ public class GetAllClientesUseCase(AppDbContext dbContext)
 
         return new PagedResponse<ResponseClienteJson>
         {
+            CurrentPage = 1,
+            PageSize = pageSize,
+            TotalCount = count,
             Data = clientes.Select(x => new ResponseClienteJson
             {
                 Id = x.Id,
@@ -32,11 +37,7 @@ public class GetAllClientesUseCase(AppDbContext dbContext)
                 Email = x.Email,
                 CreatedAt = x.CreatedAt,
                 UpdatedAt = x.UpdatedAt
-            }).ToList(),
-            CurrentPage = 1,
-            PageSize = pageSize,
-            TotalCount = count
-            
+            }).ToList()
         };
     }
 

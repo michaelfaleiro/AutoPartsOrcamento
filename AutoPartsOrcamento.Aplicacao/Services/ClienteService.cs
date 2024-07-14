@@ -1,8 +1,11 @@
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes;
+using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.AdicionarVeiculoCliente;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Delete;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetById;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Register;
+using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.RemoverVeiculoCliente;
+using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Update;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutoPartsOrcamento.Aplicacao.Services;
@@ -15,6 +18,9 @@ public static class ClienteService
         services.AddScoped<GetAllClientesUseCase>();
         services.AddScoped<GetByIdClienteUseCase>();
         services.AddScoped<DeleteClienteUseCase>();
+        services.AddScoped<UpdateClienteUseCase>();
+        services.AddScoped<AdicionarVeiculoClienteUseCase>();
+        services.AddScoped<RemoverVeiculoClienteUseCase>();
 
         return services;
     }

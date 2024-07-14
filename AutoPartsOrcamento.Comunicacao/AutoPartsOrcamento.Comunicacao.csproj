@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Request\Contato\" />
+    <Folder Include="Request\Cotacao\" />
+    <Folder Include="Request\Fornecedor\" />
+    <Folder Include="Response\Fornecedor\" />
+  </ItemGroup>
+
 </Project>
