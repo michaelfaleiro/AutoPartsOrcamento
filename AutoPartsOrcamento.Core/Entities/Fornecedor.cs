@@ -1,6 +1,7 @@
-﻿using AutoPartsOrcamento.Infra.Enums;
+﻿using AutoPartsOrcamento.Core.Entities;
+using AutoPartsOrcamento.Core.Enums;
 
-namespace AutoPartsOrcamento.Infra.Entities;
+namespace AutoPartsOrcamento.Core.Entities;
 public class Fornecedor : Entity
 {
    

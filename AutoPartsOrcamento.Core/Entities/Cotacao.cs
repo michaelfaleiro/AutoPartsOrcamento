@@ -1,4 +1,5 @@
-﻿namespace AutoPartsOrcamento.Infra.Entities;
+﻿
+namespace AutoPartsOrcamento.Core.Entities;
 public class Cotacao : Entity
 {
         

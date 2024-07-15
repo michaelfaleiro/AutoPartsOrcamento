@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPartsOrcamento.Exceptio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPartsOrcamento.Api", "AutoPartsOrcamento.Api\AutoPartsOrcamento.Api.csproj", "{FC5C8561-0B62-4C8D-9CD1-272F75D64A84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPartsOrcamento.Core", "AutoPartsOrcamento.Core\AutoPartsOrcamento.Core.csproj", "{7D1E0257-8D97-462B-9722-2BB42A574E52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{FC5C8561-0B62-4C8D-9CD1-272F75D64A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC5C8561-0B62-4C8D-9CD1-272F75D64A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC5C8561-0B62-4C8D-9CD1-272F75D64A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1E0257-8D97-462B-9722-2BB42A574E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1E0257-8D97-462B-9722-2BB42A574E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1E0257-8D97-462B-9722-2BB42A574E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1E0257-8D97-462B-9722-2BB42A574E52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{B0CA1086-CCBA-46DC-9154-F092F212B06E} = {BA37D069-F990-471F-9788-A2369E637A46}
 		{96FAE5C9-A5E5-4ACC-BEDB-6D2F36EBD052} = {BA37D069-F990-471F-9788-A2369E637A46}
 		{FC5C8561-0B62-4C8D-9CD1-272F75D64A84} = {BA37D069-F990-471F-9788-A2369E637A46}
+		{7D1E0257-8D97-462B-9722-2BB42A574E52} = {BA37D069-F990-471F-9788-A2369E637A46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {031F2063-19A6-4018-8181-73ABC944D0D6}

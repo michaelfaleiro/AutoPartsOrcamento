@@ -1,6 +1,6 @@
-﻿using AutoPartsOrcamento.Infra.Enums;
+﻿using AutoPartsOrcamento.Core.Enums;
 
-namespace AutoPartsOrcamento.Infra.Entities;
+namespace AutoPartsOrcamento.Core.Entities;
 public class Endereco : Entity
 {
     

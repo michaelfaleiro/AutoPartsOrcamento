@@ -1,4 +1,4 @@
-﻿namespace AutoPartsOrcamento.Infra.Enums;
+﻿namespace AutoPartsOrcamento.Core.Enums;
 public enum ETipoEndereco
 {
     Entrega = 1,

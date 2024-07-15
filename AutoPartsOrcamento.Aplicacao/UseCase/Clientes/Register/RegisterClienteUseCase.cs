@@ -1,9 +1,10 @@
 ﻿using AutoPartsOrcamento.Comunicacao.Request.Cliente;
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
+using AutoPartsOrcamento.Core.Entities;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
 using AutoPartsOrcamento.Infra;
-using AutoPartsOrcamento.Infra.Entities;
+using AutoPartsOrcamento.Core.Entities;
 
 namespace AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Register;
 

@@ -1,4 +1,5 @@
-﻿namespace AutoPartsOrcamento.Infra.Entities;
+﻿
+namespace AutoPartsOrcamento.Core.Entities;
 public class Orcamento : Entity
 {
     public Cliente Cliente { get; set; } = null!;

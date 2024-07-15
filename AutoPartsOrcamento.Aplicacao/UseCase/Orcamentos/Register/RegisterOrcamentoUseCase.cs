@@ -5,7 +5,7 @@ using AutoPartsOrcamento.Comunicacao.Response.Orcamento;
 using AutoPartsOrcamento.Comunicacao.Response.Veiculo;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
 using AutoPartsOrcamento.Infra;
-using AutoPartsOrcamento.Infra.Entities;
+using AutoPartsOrcamento.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.Register;

@@ -1,4 +1,5 @@
-﻿namespace AutoPartsOrcamento.Infra.Entities;
+﻿
+namespace AutoPartsOrcamento.Core.Entities;
 public class Produto : Entity
 {
     public string Sku { get; set; } = null!;

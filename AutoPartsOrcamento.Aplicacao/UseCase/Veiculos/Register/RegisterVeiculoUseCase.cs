@@ -3,7 +3,7 @@ using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Veiculo;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
 using AutoPartsOrcamento.Infra;
-using AutoPartsOrcamento.Infra.Entities;
+using AutoPartsOrcamento.Core.Entities;
 
 namespace AutoPartsOrcamento.Aplicacao.UseCase.Veiculos.Register;
 

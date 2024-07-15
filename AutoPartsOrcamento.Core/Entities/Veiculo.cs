@@ -1,4 +1,5 @@
-﻿namespace AutoPartsOrcamento.Infra.Entities;
+﻿
+namespace AutoPartsOrcamento.Core.Entities;
 public class Veiculo : Entity
 {
     public string Marca { get; set; } = string.Empty;

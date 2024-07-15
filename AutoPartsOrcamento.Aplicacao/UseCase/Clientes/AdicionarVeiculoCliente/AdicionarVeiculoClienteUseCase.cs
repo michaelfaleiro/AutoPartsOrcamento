@@ -1,7 +1,7 @@
 using AutoPartsOrcamento.Comunicacao.Request.Cliente;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
 using AutoPartsOrcamento.Infra;
-using AutoPartsOrcamento.Infra.Entities;
+using AutoPartsOrcamento.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoPartsOrcamento.Aplicacao.UseCase.Clientes.AdicionarVeiculoCliente;

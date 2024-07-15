@@ -1,4 +1,4 @@
-﻿using AutoPartsOrcamento.Infra.Entities;
+﻿using AutoPartsOrcamento.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoPartsOrcamento.Infra;
