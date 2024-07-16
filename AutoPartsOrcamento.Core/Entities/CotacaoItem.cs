@@ -3,7 +3,6 @@
 namespace AutoPartsOrcamento.Core.Entities;
 public class CotacaoItem : Entity
 {
-        
     public Cotacao Cotacao { get; set; } = null!;
     public int Quantidade { get;  set; }
     public string Nome { get;  set; } = null!;
@@ -11,6 +10,4 @@ public class CotacaoItem : Entity
     public ETipoProduto Tipo { get;  set; } = ETipoProduto.PontaEstoque;
     public IList<PrecoItemCotacao> PrecoItemCotacoes { get;  set; } = [];
     public IList<CodigoSimilarProduto> CodigoSimilares { get;  set; } = [];
-    
-
 }

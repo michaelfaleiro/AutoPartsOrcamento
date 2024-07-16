@@ -56,6 +56,15 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
                         CreatedAt = orcamento.CreatedAt,
                         UpdatedAt = orcamento.UpdatedAt
                     },
+                    Items = orcamento.OrcamentoItems.Select(x=> new ResponseOrcamentoItemJson
+                    {
+                        Id = x.Id,
+                        ProdutoId = x.ProdutoId,
+                        Quantidade = x.Quantidade,
+                        ValorUnitario = x.ValorUnitario,
+                        CreatedAt = x.CreatedAt,
+                        UpdatedAt = x.UpdatedAt
+                    }).ToList(),
                     CreatedAt = orcamento.CreatedAt,
                     UpdatedAt = orcamento.UpdatedAt
                 }

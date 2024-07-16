@@ -4,7 +4,6 @@ using AutoPartsOrcamento.Comunicacao.Response.Cliente;
 using AutoPartsOrcamento.Core.Entities;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
 using AutoPartsOrcamento.Infra;
-using AutoPartsOrcamento.Core.Entities;
 
 namespace AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Register;
 
@@ -27,7 +26,6 @@ public class RegisterClienteUseCase(AppDbContext dbContext)
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
-        
         
         await _dbContext.Clientes.AddAsync(cliente);
         await _dbContext.SaveChangesAsync();

@@ -8,9 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Request\Contato\" />
-    <Folder Include="Request\Cotacao\" />
     <Folder Include="Request\Fornecedor\" />
-    <Folder Include="Response\Fornecedor\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoPartsOrcamento.Core\AutoPartsOrcamento.Core.csproj" />
   </ItemGroup>
 
 </Project>

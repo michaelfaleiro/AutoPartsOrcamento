@@ -43,7 +43,7 @@ public class ProdutosController : ControllerBase
     
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(ResponseProdutoJson), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetProduto(
         [FromRoute] Guid id,
         [FromServices] GetByIdProdutoUseCase useCase
@@ -71,7 +71,7 @@ public class ProdutosController : ControllerBase
     
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteProduto(
         [FromRoute] Guid id,
         [FromServices] DeleteProdutoUseCase useCase

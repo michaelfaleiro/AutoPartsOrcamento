@@ -1,7 +1,10 @@
+using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.AdicionarItem;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.Delete;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.GetById;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.Register;
+using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.RemoverItem;
+using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.UpdateItem;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutoPartsOrcamento.Aplicacao.Services;
@@ -14,8 +17,9 @@ public static class OrcamentoService
         services.AddScoped<GetAllOrcamentosUseCase>();
         services.AddScoped<GetByIdOrcamentoUseCase>();
         services.AddScoped<DeleteOrcamentoUseCase>();
-        // services.AddScoped<AdicionarItemOrcamentoUseCase>();
-        // services.AddScoped<RemoverItemOrcamentoUseCase>();
+        services.AddScoped<AdicionarItemOrcamentoUseCase>();
+        services.AddScoped<UpdateItemOrcamentoUseCase>();
+        services.AddScoped<RemoverItemOrcamentoUseCase>();
 
         return services;
     }

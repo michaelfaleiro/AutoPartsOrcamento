@@ -15,6 +15,7 @@ builder.Services.ClienteUseCase();
 builder.Services.VeiculoUseCase();
 builder.Services.OrcamentoUseCase();
 builder.Services.ProdutoUseCase();
+builder.Services.CotacaoUseCase();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
