@@ -55,8 +55,12 @@ public class GetByIdCotacaoUseCase(AppDbContext dbContext)
                     Nome = cotacaoItem.Nome,
                     Sku = cotacaoItem.Sku,
                     Quantidade = cotacaoItem.Quantidade,
-                    Tipo = cotacaoItem.Tipo
-                }).ToList()
+                    Tipo = cotacaoItem.Tipo,
+                    CreatedAt = cotacaoItem.CreatedAt,
+                    UpdatedAt = cotacaoItem.UpdatedAt
+                }).ToList(),
+                CreatedAt = cotacao.CreatedAt,
+                UpdatedAt = cotacao.UpdatedAt
             }]
         };
     }

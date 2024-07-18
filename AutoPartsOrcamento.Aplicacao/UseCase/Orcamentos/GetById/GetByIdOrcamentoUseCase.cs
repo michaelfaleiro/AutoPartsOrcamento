@@ -2,6 +2,7 @@ using AutoPartsOrcamento.Comunicacao.Request;
 using AutoPartsOrcamento.Comunicacao.Request.Orcamento;
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
+using AutoPartsOrcamento.Comunicacao.Response.Cotacao;
 using AutoPartsOrcamento.Comunicacao.Response.Orcamento;
 using AutoPartsOrcamento.Comunicacao.Response.Veiculo;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
@@ -20,6 +21,7 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
             .Include(x=> x.Cliente)
             .Include(x=> x.Veiculo)
             .Include(x=> x.OrcamentoItems)
+            .Include(x=> x.Cotacoes)
             .FirstOrDefaultAsync(x=> x.Id == id);
             
         if (orcamento is null)
@@ -62,6 +64,15 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
                         ProdutoId = x.ProdutoId,
                         Quantidade = x.Quantidade,
                         ValorUnitario = x.ValorUnitario,
+                        CreatedAt = x.CreatedAt,
+                        UpdatedAt = x.UpdatedAt
+                    }).ToList(),
+                    Cotacoes = orcamento.Cotacoes.Select(x=> new ResponseCotacaoJson
+                    {
+                        Id = x.Id,
+                        Cliente = null,
+                        Veiculo = null,
+                        Items = [],
                         CreatedAt = x.CreatedAt,
                         UpdatedAt = x.UpdatedAt
                     }).ToList(),

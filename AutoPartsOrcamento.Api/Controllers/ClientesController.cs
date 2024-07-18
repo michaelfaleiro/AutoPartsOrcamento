@@ -1,5 +1,4 @@
-﻿using AutoPartsOrcamento.Aplicacao.UseCase.Clientes;
-using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.AdicionarVeiculoCliente;
+﻿using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.AdicionarVeiculoCliente;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Delete;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetById;
@@ -10,7 +9,6 @@ using AutoPartsOrcamento.Comunicacao;
 using AutoPartsOrcamento.Comunicacao.Request.Cliente;
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
-using AutoPartsOrcamento.Infra;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoPartsOrcamento.Api.Controllers;
