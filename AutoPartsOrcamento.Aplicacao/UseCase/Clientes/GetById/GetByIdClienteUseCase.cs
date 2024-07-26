@@ -25,7 +25,7 @@ public class GetByIdClienteUseCase(AppDbContext dbContext)
 
         return new Response<ResponseClienteComVeiculosJson>()
         {
-            Data = [new ResponseClienteComVeiculosJson
+            Data = new ResponseClienteComVeiculosJson
             {
                 Id = cliente.Id,
                 Nome = cliente.Nome,
@@ -46,7 +46,7 @@ public class GetByIdClienteUseCase(AppDbContext dbContext)
                 }).ToList(),
                 CreatedAt = cliente.CreatedAt,
                 UpdatedAt = cliente.UpdatedAt
-            }]
+            }
         };
     }
 }

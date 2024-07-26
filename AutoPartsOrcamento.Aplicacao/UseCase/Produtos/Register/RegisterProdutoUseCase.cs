@@ -32,7 +32,7 @@ public class RegisterProdutoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseProdutoJson>
         {
-            Data =  [new ResponseProdutoJson
+            Data =  new ResponseProdutoJson
             {
                 Id = produto.Id,
                 Sku = produto.Sku,
@@ -45,7 +45,7 @@ public class RegisterProdutoUseCase(AppDbContext dbContext)
                 Observacao = produto.Observacao,
                 CreatedAt = produto.CreatedAt,
                 UpdatedAt = produto.UpdatedAt
-            }]
+            }
         };
     }
     
@@ -53,13 +53,11 @@ public class RegisterProdutoUseCase(AppDbContext dbContext)
     {
         var validator = new RegisterProdutoValidator();
         var result = validator.Validate(request);
-        
-        if (!result.IsValid)
-        {
-            var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
+
+        if (result.IsValid) return;
+        var errors = result.Errors.Select(x => x.ErrorMessage).ToList();
             
-            throw new ErrorOnValidateException(errors);
-        }
+        throw new ErrorOnValidateException(errors);
     }
     
 }

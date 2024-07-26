@@ -1,6 +1,6 @@
 namespace AutoPartsOrcamento.Comunicacao.Response.ItemAvulso;
 
-public class ResponseItemAvulso
+public class ResponseItemAvulsoJson
 {
     public Guid Id { get; set; }
     public Guid OrcamentoId { get; set; }

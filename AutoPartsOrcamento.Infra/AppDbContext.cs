@@ -21,6 +21,7 @@ public class AppDbContext : DbContext
     public DbSet<Orcamento> Orcamentos { get; set; } = null!;
     public DbSet<StatusOrcamento> StatusOrcamentos { get; set; } = null!;
     public DbSet<OrcamentoItem> OrcamentoItens { get; set; } = null!;
+    public DbSet<OrcamentoItemAvulso> OrcamentoItemAvulsos { get; set; } = null!;   
     public DbSet<PrecoItemCotacao> PrecoItemCotacoes { get; set; } = null!;
     public DbSet<Produto> Produtos { get; set; } = null!;
     public DbSet<Veiculo> Veiculos { get; set; } = null!;

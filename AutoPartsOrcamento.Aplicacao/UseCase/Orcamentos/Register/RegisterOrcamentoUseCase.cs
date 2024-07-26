@@ -16,6 +16,8 @@ public class RegisterOrcamentoUseCase(AppDbContext dbContext)
     
     public async Task<Response<ResponseOrcamentoJson>> Execute(CreateOrcamentoRequest request)
     {
+        Validate(request);
+        
         var cliente = await _dbContext.Clientes.FirstOrDefaultAsync(x => x.Id == request.ClienteId);
         
         if (cliente is null)
@@ -30,10 +32,19 @@ public class RegisterOrcamentoUseCase(AppDbContext dbContext)
             throw new NotFoundException("Veículo não encontrado.");
         }
         
+        var status = await _dbContext.StatusOrcamentos.FirstOrDefaultAsync(x => x.Id == request.StatusId);
+        
+        if (status is null)
+        {
+            throw new NotFoundException("Status não encontrado.");
+        }
+        
+        
         var orcamento = new Orcamento
         {
             Cliente = cliente,
-            Veiculo = veiculo
+            Veiculo = veiculo,
+            Status = status
         };
         
         await _dbContext.Orcamentos.AddAsync(orcamento);
@@ -42,7 +53,7 @@ public class RegisterOrcamentoUseCase(AppDbContext dbContext)
         return new Response<ResponseOrcamentoJson>()
         {
             Data =
-            [
+            
                 new ResponseOrcamentoJson
                 {
                     Id = orcamento.Id,
@@ -71,7 +82,18 @@ public class RegisterOrcamentoUseCase(AppDbContext dbContext)
                     CreatedAt = orcamento.CreatedAt,
                     UpdatedAt = orcamento.UpdatedAt
                 }
-            ]
+            
         };
+    }
+    
+    private void Validate(CreateOrcamentoRequest request)
+    {
+        var validator = new RegisterOrcamentoValidator();
+        
+        var validationResult = validator.Validate(request);
+
+        if (validationResult.IsValid) return;
+        var errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+        throw new ErrorOnValidateException(errors);
     }
 }

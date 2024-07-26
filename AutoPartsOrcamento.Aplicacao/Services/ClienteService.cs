@@ -5,6 +5,7 @@ using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetById;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Register;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.RemoverVeiculoCliente;
+using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Search;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Update;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,7 @@ public static class ClienteService
         services.AddScoped<UpdateClienteUseCase>();
         services.AddScoped<AdicionarVeiculoClienteUseCase>();
         services.AddScoped<RemoverVeiculoClienteUseCase>();
+        services.AddScoped<SearchClienteByNomeTelefoneVeiculoUseCase>();
 
         return services;
     }

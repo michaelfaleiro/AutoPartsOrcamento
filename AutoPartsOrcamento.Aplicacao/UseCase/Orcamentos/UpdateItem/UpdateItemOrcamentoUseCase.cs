@@ -24,7 +24,7 @@ public class UpdateItemOrcamentoUseCase(AppDbContext dbContext)
         }
 
         orcamentoItem.Quantidade = request.Quantidade;
-        orcamentoItem.ValorUnitario = request.ValorUnitario;
+        orcamentoItem.ValorVenda = request.ValorUnitario;
 
         await _dbContext.SaveChangesAsync();
     }

@@ -27,7 +27,7 @@ public class RegisterStatusCotacaoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseStatusOrcamentoJson>
         {
-            Data = [new ResponseStatusOrcamentoJson
+            Data = new ResponseStatusOrcamentoJson
             {
                 Id = statusCotacao.Id,
                 Nome = statusCotacao.Nome,
@@ -35,7 +35,7 @@ public class RegisterStatusCotacaoUseCase(AppDbContext dbContext)
                 Ativo = statusCotacao.Ativo,
                 CreatedAt = statusCotacao.CreatedAt,
                 UpdatedAt = statusCotacao.UpdatedAt
-            }]
+            }
         };
     }
     

@@ -1,8 +1,7 @@
-using AutoPartsOrcamento.Comunicacao.Request;
-using AutoPartsOrcamento.Comunicacao.Request.Orcamento;
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
 using AutoPartsOrcamento.Comunicacao.Response.Cotacao;
+using AutoPartsOrcamento.Comunicacao.Response.ItemAvulso;
 using AutoPartsOrcamento.Comunicacao.Response.Orcamento;
 using AutoPartsOrcamento.Comunicacao.Response.Veiculo;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
@@ -18,12 +17,15 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
     public async Task<Response<ResponseOrcamentoJson>> Execute(Guid id)
     {
         var orcamento = await _dbContext.Orcamentos
-            .Include(x=> x.Cliente)
-            .Include(x=> x.Veiculo)
-            .Include(x=> x.OrcamentoItems)
-            .Include(x=> x.Cotacoes)
-            .FirstOrDefaultAsync(x=> x.Id == id);
-            
+            .Include(x => x.Cliente)
+            .Include(x => x.Veiculo)
+            .Include(x => x.OrcamentoItems)
+            .ThenInclude(x => x.Produto)
+            .Include(x => x.OrcamentoItemAvulsos)
+            .Include(x => x.Cotacoes)
+            .Include(x=> x.Status)
+            .FirstOrDefaultAsync(x => x.Id == id);
+
         if (orcamento is null)
         {
             throw new NotFoundException("Orçamento não encontrado");
@@ -32,7 +34,6 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
         return new Response<ResponseOrcamentoJson>()
         {
             Data =
-            [
                 new ResponseOrcamentoJson
                 {
                     Id = orcamento.Id,
@@ -58,28 +59,42 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
                         CreatedAt = orcamento.CreatedAt,
                         UpdatedAt = orcamento.UpdatedAt
                     },
-                    Items = orcamento.OrcamentoItems.Select(x=> new ResponseOrcamentoItemJson
+                    Items = orcamento.OrcamentoItems.Select(x => new ResponseOrcamentoItemJson
                     {
                         Id = x.Id,
                         ProdutoId = x.ProdutoId,
+                        OrcamentoId = x.Orcamento.Id,
+                        Sku = x.Produto.Sku,
+                        Nome = x.Produto.Nome,
+                        Fabricante = x.Produto.Fabricante,
                         Quantidade = x.Quantidade,
-                        ValorUnitario = x.ValorUnitario,
+                        ValorUnitario = x.ValorVenda,
                         CreatedAt = x.CreatedAt,
                         UpdatedAt = x.UpdatedAt
                     }).ToList(),
-                    Cotacoes = orcamento.Cotacoes.Select(x=> new ResponseCotacaoJson
+                    ItemAvulsos = orcamento.OrcamentoItemAvulsos.Select(x => new ResponseItemAvulsoJson
                     {
                         Id = x.Id,
-                        Cliente = null,
-                        Veiculo = null,
+                        OrcamentoId = x.Orcamento.Id,
+                        Sku = x.Sku,
+                        Nome = x.Nome,
+                        Fabricante = x.Fabricante,
+                        Quantidade = x.Quantidade,
+                        ValorVenda = x.ValorVenda,
+                        CreatedAt = x.CreatedAt,
+                        UpdatedAt = x.UpdatedAt
+                    }).ToList(),
+                    Cotacoes = orcamento.Cotacoes.Select(x => new ResponseCotacaoJson
+                    {
+                        Id = x.Id,
                         Items = [],
                         CreatedAt = x.CreatedAt,
                         UpdatedAt = x.UpdatedAt
                     }).ToList(),
+                    Status = orcamento.Status.Nome,                   
                     CreatedAt = orcamento.CreatedAt,
                     UpdatedAt = orcamento.UpdatedAt
                 }
-            ]
         };
     }
 }

@@ -1,10 +1,13 @@
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.AdicionarItem;
+using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.AdicionarItemAvulso;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.Delete;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.GetById;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.Register;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.RemoverItem;
+using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.RemoverItemAvulso;
 using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.UpdateItem;
+using AutoPartsOrcamento.Aplicacao.UseCase.Orcamentos.UpdateItemAvulso;
 using AutoPartsOrcamento.Comunicacao;
 using AutoPartsOrcamento.Comunicacao.Request.Orcamento;
 using AutoPartsOrcamento.Comunicacao.Response;
@@ -96,6 +99,43 @@ public class OrcamentosController : ControllerBase
     public async Task<IActionResult> DeleteItem(
         [FromBody] RemoverItemOrcamentoRequest request,
         [FromServices] RemoverItemOrcamentoUseCase useCase)
+    {
+        await useCase.Execute(request);
+        
+        return NoContent();
+    }
+    
+    [HttpPost("adicionar-item-avulso")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> PostItemAvulso(
+        [FromBody] AdicionarItemAvulsoOrcamentoRequest request,
+        [FromServices] AdicionarItemAvulsoOrcamentoUseCase useCase)
+    {
+        await useCase.Execute(request);
+        
+        return NoContent();
+    }
+    
+    [HttpPut("atualizar-item-avulso")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> PutItemAvulso(
+        [FromBody] UpdateItemAvulsoOrcamentoRequest request,
+        [FromServices] UpdateItemAvulsoOrcamentoUseCase useCase)
+    {
+        await useCase.Execute(request);
+        
+        return NoContent();
+    }
+    
+    [HttpDelete("remover-item-avulso")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteItemAvulso(
+        [FromBody] RemoverItemAvulsoOrcamentoRequest request,
+        [FromServices] RemoverItemAvulsoOrcamentoUseCase useCase)
     {
         await useCase.Execute(request);
         

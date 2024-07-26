@@ -12,11 +12,12 @@ public class GetAllOrcamentosUseCase(AppDbContext dbContext)
 {
     private readonly AppDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
-    public async Task<Response<ResponseOrcamentoJson>> Execute(int pageNumber, int pageSize)
+    public async Task<PagedResponse<ResponseOrcamentoJson>> Execute(int pageNumber, int pageSize)
     {
         var query = _dbContext.Orcamentos
             .Include(x=> x.Cliente)
             .Include(x=> x.Veiculo)
+            .Include(x=> x.Status)
             .AsQueryable();
         
         var orcamentos = await query
@@ -56,6 +57,7 @@ public class GetAllOrcamentosUseCase(AppDbContext dbContext)
                     CreatedAt = orcamento.Veiculo.CreatedAt,
                     UpdatedAt = orcamento.Veiculo.UpdatedAt
                 },
+                Status = orcamento.Status.Nome,
                 CreatedAt = orcamento.CreatedAt,
                 UpdatedAt = orcamento.UpdatedAt
             }).ToList()

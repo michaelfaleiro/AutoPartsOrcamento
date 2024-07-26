@@ -1,7 +1,8 @@
 namespace AutoPartsOrcamento.Comunicacao.Request.Cotacao;
 
-public class UpdatePrecoItemRequest : Request
+public class UpdatePrecoItemCotacaoRequest : Request
 {
+    public Guid PrecoItemId { get; set; }
     public Guid CotacaoId { get; set; }
     public Guid ItemId { get; set; }
     public Guid FornecedorId { get; set; }

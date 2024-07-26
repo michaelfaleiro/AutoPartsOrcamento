@@ -20,7 +20,7 @@ public class GetByIdStatusCotacaoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseStatusCotacaoJson>
         {
-            Data = [new ResponseStatusCotacaoJson
+            Data = new ResponseStatusCotacaoJson
             {
                 Id = statusCotacao.Id,
                 Nome = statusCotacao.Nome,
@@ -28,7 +28,7 @@ public class GetByIdStatusCotacaoUseCase(AppDbContext dbContext)
                 Ativo = statusCotacao.Ativo,
                 CreatedAt = statusCotacao.CreatedAt,
                 UpdatedAt = statusCotacao.UpdatedAt
-            }]
+            }
         };
     }
     

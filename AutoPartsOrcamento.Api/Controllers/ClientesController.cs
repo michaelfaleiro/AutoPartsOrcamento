@@ -4,6 +4,7 @@ using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetById;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Register;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.RemoverVeiculoCliente;
+using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Search;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Update;
 using AutoPartsOrcamento.Comunicacao;
 using AutoPartsOrcamento.Comunicacao.Request.Cliente;
@@ -54,6 +55,18 @@ public class ClientesController() : ControllerBase
 
         return Ok(response);
     }
+    
+    [HttpGet("search/")]
+    [ProducesResponseType(typeof(Response<ResponseClienteJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> SearchClientes(
+        [FromServices] SearchClienteByNomeTelefoneVeiculoUseCase useCase,
+        [FromQuery] string query)
+    {
+        var response = await useCase.Execute(new SearchClienteRequest { Query = query });
+
+        return Ok(response);
+    } 
     
     [HttpPut("{id:guid}")]
     [ProducesResponseType(typeof(Response<ResponseClienteJson>), StatusCodes.Status200OK)]

@@ -22,7 +22,7 @@ public class GetAllVeiculosUseCase(AppDbContext dbContext)
         
         return new Response<IList<ResponseVeiculoJson>>
         {
-            Data = [veiculos.Select(x => new ResponseVeiculoJson
+            Data = veiculos.Select(x => new ResponseVeiculoJson
             {
                 Id = x.Id,
                 Marca = x.Marca,
@@ -34,7 +34,7 @@ public class GetAllVeiculosUseCase(AppDbContext dbContext)
                 CreatedAt = x.CreatedAt,
                 UpdatedAt = x.UpdatedAt
                 
-            }).ToList()]
+            }).ToList()
         };
         
     }

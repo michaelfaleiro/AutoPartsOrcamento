@@ -9,12 +9,12 @@ public class GetAllStatusCotacaoUseCase(AppDbContext dbContext)
 {
     private readonly AppDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     
-    public async Task<Response<ResponseStatusOrcamentoJson>> Execute()
+    public async Task<PagedResponse<ResponseStatusOrcamentoJson>> Execute()
     {
         var statusCotacao = await _dbContext
             .StatusCotacoes.AsNoTracking().ToListAsync();
 
-        return new Response<ResponseStatusOrcamentoJson>
+        return new PagedResponse<ResponseStatusOrcamentoJson>
         {
             Data = statusCotacao.Select(status => new ResponseStatusOrcamentoJson
             {

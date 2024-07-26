@@ -3,8 +3,6 @@ namespace AutoPartsOrcamento.Core.Entities;
 
 public class CotacaoFornecedor : Entity
 {
-   
-    
     public Cotacao Cotacao { get; set; } = null!;    
     public Fornecedor Fornecedor { get;  set; } = null!;
     public string StatusCotacao { get; set; } = string.Empty;

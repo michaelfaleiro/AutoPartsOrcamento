@@ -2,7 +2,6 @@
 namespace AutoPartsOrcamento.Core.Entities;
 public class PrecoItemCotacao : Entity
 {
-        
     public CotacaoItem CotacaoItem { get; set; } = null!;
     public int QuantidadeAtendida { get;  set; }
     public string Sku { get; set; } = null!;

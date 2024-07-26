@@ -408,7 +408,7 @@ namespace AutoPartsOrcamento.Infra.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("ValorUnitario")
+                    b.Property<decimal>("ValorVenda")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -418,6 +418,46 @@ namespace AutoPartsOrcamento.Infra.Migrations
                     b.HasIndex("ProdutoId");
 
                     b.ToTable("OrcamentoItens");
+                });
+
+            modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.OrcamentoItemAvulso", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Fabricante")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("OrcamentoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sku")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("ValorVenda")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrcamentoId");
+
+                    b.ToTable("OrcamentoItemAvulsos");
                 });
 
             modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.PrecoItemCotacao", b =>
@@ -759,6 +799,17 @@ namespace AutoPartsOrcamento.Infra.Migrations
                     b.Navigation("Produto");
                 });
 
+            modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.OrcamentoItemAvulso", b =>
+                {
+                    b.HasOne("AutoPartsOrcamento.Core.Entities.Orcamento", "Orcamento")
+                        .WithMany("OrcamentoItemAvulsos")
+                        .HasForeignKey("OrcamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Orcamento");
+                });
+
             modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.PrecoItemCotacao", b =>
                 {
                     b.HasOne("AutoPartsOrcamento.Core.Entities.CotacaoFornecedor", null)
@@ -816,6 +867,8 @@ namespace AutoPartsOrcamento.Infra.Migrations
             modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.Orcamento", b =>
                 {
                     b.Navigation("Cotacoes");
+
+                    b.Navigation("OrcamentoItemAvulsos");
 
                     b.Navigation("OrcamentoItems");
                 });

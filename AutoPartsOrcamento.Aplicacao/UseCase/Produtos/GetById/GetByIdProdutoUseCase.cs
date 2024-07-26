@@ -20,7 +20,7 @@ public class GetByIdProdutoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseProdutoJson>
         {
-            Data =  [new ResponseProdutoJson
+            Data =  new ResponseProdutoJson
             {
                 Id = produto.Id,
                 Sku = produto.Sku,
@@ -33,7 +33,7 @@ public class GetByIdProdutoUseCase(AppDbContext dbContext)
                 Observacao = produto.Observacao,
                 CreatedAt = produto.CreatedAt,
                 UpdatedAt = produto.UpdatedAt
-            }]
+            }
         };
     }
     

@@ -9,7 +9,7 @@ public class GetAllStatusOrcamentoUseCase(AppDbContext dbContext)
 {
     private readonly AppDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     
-    public async Task<Response<ResponseStatusOrcamentoJson>> Execute(int pageNumber, int pageSize)
+    public async Task<PagedResponse<ResponseStatusOrcamentoJson>> Execute(int pageNumber, int pageSize)
     {
         var query = _dbContext.StatusOrcamentos.AsNoTracking();
         

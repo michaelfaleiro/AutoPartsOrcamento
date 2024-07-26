@@ -41,7 +41,7 @@ public class AdicionarItemOrcamentoUseCase(AppDbContext dbContext)
             OrcamentoId = request.OrcamentoId,
             ProdutoId = request.ProdutoId,
             Quantidade = request.Quantidade,
-            ValorUnitario = request.ValorUnitario
+            ValorVenda = request.ValorUnitario
         };
 
         await _dbContext.OrcamentoItens.AddAsync(orcamentoItem);

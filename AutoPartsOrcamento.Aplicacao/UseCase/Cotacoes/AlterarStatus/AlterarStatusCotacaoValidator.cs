@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace AutoPartsOrcamento.Aplicacao.UseCase.Cotacoes.AlterarStatus;
 
-public class AlterarStatusValidator : AbstractValidator<AlterarStatusCotacaoRequest>
+public class AlterarStatusCotacaoValidator : AbstractValidator<AlterarStatusCotacaoRequest>
 {
-    public AlterarStatusValidator()
+    public AlterarStatusCotacaoValidator()
     {
         RuleFor(request => request.CotacaoId)
             .NotEmpty()

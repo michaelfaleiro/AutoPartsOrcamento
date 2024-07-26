@@ -23,9 +23,18 @@ public class RegisterCotacaoUseCase(AppDbContext dbContext)
             throw new NotFoundException("Orçamento não encontrado");
         }
         
+        var status = await _dbContext.StatusCotacoes
+            .FirstOrDefaultAsync(status => status.Id == request.StatusId);
+        
+        if(status is null)
+        {
+            throw new NotFoundException("Status não encontrado");
+        }
+        
         var cotacao = new Cotacao
         {
-            Orcamento = orcamento
+            Orcamento = orcamento,
+            Status = status
         };
 
         await _dbContext.Cotacao.AddAsync(cotacao);

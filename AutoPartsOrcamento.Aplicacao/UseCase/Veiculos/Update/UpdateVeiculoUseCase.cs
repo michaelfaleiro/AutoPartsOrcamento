@@ -36,7 +36,7 @@ public class UpdateVeiculoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseVeiculoJson>
         {
-            Data = [new ResponseVeiculoJson
+            Data = new ResponseVeiculoJson
             {
                 Id = veiculo.Id,
                 Marca = veiculo.Marca,
@@ -47,7 +47,7 @@ public class UpdateVeiculoUseCase(AppDbContext dbContext)
                 Renavam = veiculo.Renavam,
                 CreatedAt = veiculo.CreatedAt,
                 UpdatedAt = veiculo.UpdatedAt
-            }]
+            }
         };
     }
 

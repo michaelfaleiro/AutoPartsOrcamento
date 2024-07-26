@@ -33,7 +33,7 @@ public class RegisterVeiculoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseVeiculoJson>()
         {
-            Data = [new ResponseVeiculoJson
+            Data = new ResponseVeiculoJson
             {
                 Id = veiculo.Id,
                 Marca = veiculo.Marca,
@@ -44,7 +44,7 @@ public class RegisterVeiculoUseCase(AppDbContext dbContext)
                 Chassi = veiculo.Chassi,
                 CreatedAt = veiculo.CreatedAt,
                 UpdatedAt = veiculo.UpdatedAt
-            }]
+            }
         };
     }
     

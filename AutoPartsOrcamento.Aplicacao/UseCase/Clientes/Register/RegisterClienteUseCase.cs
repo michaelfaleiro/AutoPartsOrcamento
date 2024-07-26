@@ -32,7 +32,7 @@ public class RegisterClienteUseCase(AppDbContext dbContext)
             
         return new Response<ResponseClienteJson>()
         {
-            Data = [new ResponseClienteJson
+            Data = new ResponseClienteJson
             {
                 Id = cliente.Id,
                 Nome = cliente.Nome,
@@ -41,7 +41,7 @@ public class RegisterClienteUseCase(AppDbContext dbContext)
                 Email = cliente.Email,
                 CreatedAt = cliente.CreatedAt,
                 UpdatedAt = cliente.UpdatedAt
-            }]
+            }
         };
     }
     

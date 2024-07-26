@@ -32,7 +32,7 @@ public class UpdateStatusCotacaoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseStatusOrcamentoJson>
         {
-            Data = [new ResponseStatusOrcamentoJson
+            Data = new ResponseStatusOrcamentoJson
             {
                 Id = statusCotacao.Id,
                 Nome = statusCotacao.Nome,
@@ -40,7 +40,7 @@ public class UpdateStatusCotacaoUseCase(AppDbContext dbContext)
                 Ativo = statusCotacao.Ativo,
                 CreatedAt = statusCotacao.CreatedAt,
                 UpdatedAt = statusCotacao.UpdatedAt
-            }]
+            }
         };
     }
     

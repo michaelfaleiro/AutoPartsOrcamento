@@ -30,7 +30,7 @@ public class GetByIdCotacaoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseCotacaoJson>()
         {
-            Data = [new ResponseCotacaoJson
+            Data = new ResponseCotacaoJson
             {
                 Id = cotacao.Id,
                 Cliente = new ResponseClienteJson
@@ -61,7 +61,7 @@ public class GetByIdCotacaoUseCase(AppDbContext dbContext)
                 }).ToList(),
                 CreatedAt = cotacao.CreatedAt,
                 UpdatedAt = cotacao.UpdatedAt
-            }]
+            }
         };
     }
 }

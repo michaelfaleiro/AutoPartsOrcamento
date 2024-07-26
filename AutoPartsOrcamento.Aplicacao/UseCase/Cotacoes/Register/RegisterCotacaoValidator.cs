@@ -10,5 +10,9 @@ public class RegisterCotacaoValidator : AbstractValidator<CreateCotacaoRequest>
         RuleFor(request => request.OrcamentoId)
             .NotEmpty()
             .WithMessage("O id do orçamento é obrigatório");
+
+        RuleFor(request => request.StatusId)
+            .NotEmpty()
+            .WithMessage("O id do status é obrigatório");
     }
 }

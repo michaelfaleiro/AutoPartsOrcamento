@@ -7,5 +7,5 @@ public class OrcamentoItem : Entity
     public Guid ProdutoId { get;  set; }
     public Produto Produto { get;  set; } = null!;
     public int Quantidade { get;  set; }
-    public decimal ValorUnitario { get;  set; }
+    public decimal ValorVenda { get;  set; }
 }
