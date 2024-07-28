@@ -2,6 +2,7 @@ using AutoPartsOrcamento.Aplicacao.UseCase.Produtos.Delete;
 using AutoPartsOrcamento.Aplicacao.UseCase.Produtos.GetAll;
 using AutoPartsOrcamento.Aplicacao.UseCase.Produtos.GetById;
 using AutoPartsOrcamento.Aplicacao.UseCase.Produtos.Register;
+using AutoPartsOrcamento.Aplicacao.UseCase.Produtos.Search;
 using AutoPartsOrcamento.Aplicacao.UseCase.Produtos.Update;
 using AutoPartsOrcamento.Comunicacao;
 using AutoPartsOrcamento.Comunicacao.Request.Produto;
@@ -27,7 +28,7 @@ public class ProdutosController : ControllerBase
 
         return Created(string.Empty, response);
     }
-    
+
     [HttpGet]
     [ProducesResponseType(typeof(Response<ResponseProdutoJson>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAllProdutos(
@@ -37,23 +38,23 @@ public class ProdutosController : ControllerBase
         )
     {
         var response = await useCase.Execute(pageNumber, pageSize);
-        
+
         return Ok(response);
     }
-    
+
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(typeof(ResponseProdutoJson), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Response<ResponseProdutoJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetProduto(
         [FromRoute] Guid id,
         [FromServices] GetByIdProdutoUseCase useCase
         )
     {
         var response = await useCase.Execute(id);
-        
+
         return Ok(response);
     }
-    
+
     [HttpPut("{id:guid}")]
     [ProducesResponseType(typeof(UpdateProdutoRequest), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -65,20 +66,31 @@ public class ProdutosController : ControllerBase
         )
     {
         var response = await useCase.Execute(id, request);
-        
+
         return Ok(response);
     }
-    
+
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(ResponseErrorJson),StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteProduto(
         [FromRoute] Guid id,
         [FromServices] DeleteProdutoUseCase useCase
         )
     {
         await useCase.Execute(id);
-        
+
         return NoContent();
+    }
+
+    [HttpGet("search")]
+    [ProducesResponseType(typeof(PagedResponse<ResponseProdutoJson>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> SearchProduto(
+        [FromQuery] string query,
+        [FromServices] SearchProdutoBySkuNomeUseCase useCase)
+    {
+        var response = await useCase.Execute(new SearchProdutoRequest { Query = query });
+
+        return Ok(response);
     }
 }

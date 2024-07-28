@@ -1,13 +1,12 @@
 using AutoPartsOrcamento.Core.Enums;
 
-namespace AutoPartsOrcamento.Comunicacao.Response.Produto;
+namespace AutoPartsOrcamento.Comunicacao.Request.Cotacao;
 
-public class ResponseCodigoSimilarProdutoJson
+public class AdicionarCodigoSimilarCotacaoRequest : Request
 {
-    public Guid Id { get; set; }
-    public Guid ItemId { get; set; }  
+    public Guid ItemId { get; set; }
     public string Sku { get; set; } = string.Empty;
     public string Fabricante { get; set; } = string.Empty;
     public ETipoCodigoSimilar Tipo { get; set; }
-   
+    
 }

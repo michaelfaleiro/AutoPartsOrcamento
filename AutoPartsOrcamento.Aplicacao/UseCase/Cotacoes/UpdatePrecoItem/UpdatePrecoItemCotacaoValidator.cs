@@ -47,6 +47,11 @@ public class UpdatePrecoItemCotacaoValidator : AbstractValidator<UpdatePrecoItem
         RuleFor(x => x.Observacao)
             .NotEmpty()
             .WithMessage("Observação não informada");
+        
+        RuleFor(x=> x.Fabricante)
+            .NotEmpty()
+            .WithMessage("Fabricante não informado");
+        
     }
     
     

@@ -1,6 +1,7 @@
 using AutoPartsOrcamento.Comunicacao.Response;
 using AutoPartsOrcamento.Comunicacao.Response.Cliente;
 using AutoPartsOrcamento.Comunicacao.Response.Cotacao;
+using AutoPartsOrcamento.Comunicacao.Response.Fornecedor;
 using AutoPartsOrcamento.Comunicacao.Response.Item;
 using AutoPartsOrcamento.Comunicacao.Response.Veiculo;
 using AutoPartsOrcamento.Exceptions.ExceptionsBase;
@@ -21,6 +22,8 @@ public class GetByIdCotacaoUseCase(AppDbContext dbContext)
             .Include(x=> x.Orcamento)
             .ThenInclude(x=> x.Veiculo)
             .Include(cotacao => cotacao.CotacaoItems)
+            .ThenInclude(x=> x.PrecoItemCotacoes)
+            .ThenInclude(x=> x.Fornecedor)
             .FirstOrDefaultAsync(cotacao => cotacao.Id == id);
 
         if (cotacao is null)
@@ -56,6 +59,25 @@ public class GetByIdCotacaoUseCase(AppDbContext dbContext)
                     Sku = cotacaoItem.Sku,
                     Quantidade = cotacaoItem.Quantidade,
                     Tipo = cotacaoItem.Tipo,
+                    PrecoItemCotacoes = cotacaoItem.PrecoItemCotacoes.Select(precoItemCotacao => new ResponsePrecoItemCotacaoJson()
+                    {
+                        Id = precoItemCotacao.Id,
+                        Fornecedor = new ResponseFornecedorJson
+                        {
+                            Id = precoItemCotacao.Fornecedor.Id,
+                            NomeFantasia = precoItemCotacao.Fornecedor.NomeFantasia,
+                            RazaoSocial = precoItemCotacao.Fornecedor.RazaoSocial,
+                        },
+                        QuantidadeAtendida = precoItemCotacao.QuantidadeAtendida,
+                        Sku = precoItemCotacao.Sku,
+                        Fabricante = precoItemCotacao.Fabricante,
+                        ValorCusto = precoItemCotacao.ValorCusto,
+                        ValorVenda = precoItemCotacao.ValorVenda,
+                        PrazoExpedicao = precoItemCotacao.PrazoExpedicao,
+                        Observacao = precoItemCotacao.Observacao,
+                        CreatedAt = precoItemCotacao.CreatedAt,
+                        UpdatedAt = precoItemCotacao.UpdatedAt
+                    }).ToList(),
                     CreatedAt = cotacaoItem.CreatedAt,
                     UpdatedAt = cotacaoItem.UpdatedAt
                 }).ToList(),

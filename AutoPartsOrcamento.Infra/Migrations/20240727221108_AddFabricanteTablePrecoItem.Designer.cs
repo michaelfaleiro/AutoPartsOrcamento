@@ -4,6 +4,7 @@ using AutoPartsOrcamento.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoPartsOrcamento.Infra.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240727221108_AddFabricanteTablePrecoItem")]
+    partial class AddFabricanteTablePrecoItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,7 +91,7 @@ namespace AutoPartsOrcamento.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CotacaoItemId")
+                    b.Property<Guid?>("CotacaoItemId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -104,9 +107,6 @@ namespace AutoPartsOrcamento.Infra.Migrations
                     b.Property<string>("Sku")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Tipo")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -684,17 +684,13 @@ namespace AutoPartsOrcamento.Infra.Migrations
 
             modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.CodigoSimilarProduto", b =>
                 {
-                    b.HasOne("AutoPartsOrcamento.Core.Entities.CotacaoItem", "CotacaoItem")
+                    b.HasOne("AutoPartsOrcamento.Core.Entities.CotacaoItem", null)
                         .WithMany("CodigoSimilares")
-                        .HasForeignKey("CotacaoItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CotacaoItemId");
 
                     b.HasOne("AutoPartsOrcamento.Core.Entities.Produto", null)
                         .WithMany("CodigoSimilares")
                         .HasForeignKey("ProdutoId");
-
-                    b.Navigation("CotacaoItem");
                 });
 
             modelBuilder.Entity("AutoPartsOrcamento.Core.Entities.Contato", b =>

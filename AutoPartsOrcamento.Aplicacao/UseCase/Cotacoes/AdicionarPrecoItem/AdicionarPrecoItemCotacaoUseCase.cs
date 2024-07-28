@@ -17,6 +17,8 @@ public class AdicionarPrecoItemCotacaoUseCase(AppDbContext dbContext)
         
         var cotacao = await _dbContext.Cotacao
             .Include(c => c.CotacaoItems)
+            .ThenInclude(x=> x.PrecoItemCotacoes)
+            .ThenInclude(x=> x.Fornecedor)
             .FirstOrDefaultAsync(c => c.Id == request.CotacaoId);
 
         if (cotacao == null)
@@ -45,13 +47,14 @@ public class AdicionarPrecoItemCotacaoUseCase(AppDbContext dbContext)
             Fornecedor = fornecedor,
             QuantidadeAtendida = request.QuantidadeAtendida,
             Sku = request.Sku,
+            Fabricante = request.Fabricante,
             ValorCusto = request.ValorCusto,
             ValorVenda = request.ValorVenda,
             PrazoExpedicao = request.PrazoExpedicao,
             Observacao = request.Observacao
         };
 
-        item.PrecoItemCotacoes.Add(precoItem);
+        await _dbContext.PrecoItemCotacoes.AddAsync(precoItem);
 
         await _dbContext.SaveChangesAsync();
     }
@@ -63,10 +66,8 @@ public class AdicionarPrecoItemCotacaoUseCase(AppDbContext dbContext)
 
         var validationResult = validator.Validate(request);
 
-        if (!validationResult.IsValid)
-        {
-            var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            throw new ErrorOnValidateException(errors);
-        }
+        if (validationResult.IsValid) return;
+        var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+        throw new ErrorOnValidateException(errors);
     }
 }

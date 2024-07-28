@@ -8,7 +8,7 @@ namespace AutoPartsOrcamento.Aplicacao.UseCase.Produtos.GetById;
 public class GetByIdProdutoUseCase(AppDbContext dbContext)
 {
     private readonly AppDbContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-    
+
     public async Task<Response<ResponseProdutoJson>> Execute(Guid id)
     {
         var produto = await _dbContext.Produtos.FindAsync(id);
@@ -20,7 +20,7 @@ public class GetByIdProdutoUseCase(AppDbContext dbContext)
 
         return new Response<ResponseProdutoJson>
         {
-            Data =  new ResponseProdutoJson
+            Data = new ResponseProdutoJson
             {
                 Id = produto.Id,
                 Sku = produto.Sku,
@@ -36,5 +36,5 @@ public class GetByIdProdutoUseCase(AppDbContext dbContext)
             }
         };
     }
-    
+
 }

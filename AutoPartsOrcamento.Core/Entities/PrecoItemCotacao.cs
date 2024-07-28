@@ -4,6 +4,7 @@ public class PrecoItemCotacao : Entity
 {
     public CotacaoItem CotacaoItem { get; set; } = null!;
     public int QuantidadeAtendida { get;  set; }
+    public string Fabricante { get; set; } = null!;
     public string Sku { get; set; } = null!;
     public decimal ValorCusto { get;  set; }
     public decimal ValorVenda { get;  set; }

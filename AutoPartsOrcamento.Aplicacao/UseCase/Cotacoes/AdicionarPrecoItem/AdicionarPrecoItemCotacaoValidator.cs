@@ -39,5 +39,13 @@ public class AdicionarPrecoItemCotacaoValidator : AbstractValidator<AdicionarPre
         RuleFor(x => x.PrazoExpedicao)
             .GreaterThan(0)
             .WithMessage("Prazo de expedição deve ser maior que zero");
+
+        RuleFor(x => x.Observacao)
+            .MaximumLength(500)
+            .WithMessage("Observação deve ter no máximo 500 caracteres");
+
+        RuleFor(x => x.Fabricante)
+            .NotEmpty()
+            .WithMessage("Fabricante não informado");
     }
 }

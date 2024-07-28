@@ -1,4 +1,3 @@
-using AutoPartsOrcamento.Aplicacao.UseCase.Clientes;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.AdicionarVeiculoCliente;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.Delete;
 using AutoPartsOrcamento.Aplicacao.UseCase.Clientes.GetAll;

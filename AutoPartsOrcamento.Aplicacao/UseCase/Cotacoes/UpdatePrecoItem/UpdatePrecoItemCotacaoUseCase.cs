@@ -33,6 +33,7 @@ public class UpdatePrecoItemCotacaoUseCase(AppDbContext dbContext)
         
         precoItem.QuantidadeAtendida = request.QuantidadeAtendida;
         precoItem.Sku = request.Sku;
+        precoItem.Fabricante = request.Fabricante;
         precoItem.ValorCusto = request.ValorCusto;
         precoItem.ValorVenda = request.ValorVenda;
         precoItem.PrazoExpedicao = request.PrazoExpedicao;
