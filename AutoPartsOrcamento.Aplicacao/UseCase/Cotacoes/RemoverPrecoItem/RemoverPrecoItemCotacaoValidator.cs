@@ -7,13 +7,13 @@ public class RemoverPrecoItemCotacaoValidator : AbstractValidator<RemoverPrecoIt
 {
     public RemoverPrecoItemCotacaoValidator()
     {
-        RuleFor(x => x.CotacaoId)
-            .NotEmpty()
-            .WithMessage("Cotação não informada");
-
         RuleFor(x => x.ItemId)
             .NotEmpty()
             .WithMessage("Item não informado");
+
+        RuleFor(x => x.PrecoItemId)
+            .NotEmpty()
+            .WithMessage("PrecoItemId não informado");
     }
     
 }

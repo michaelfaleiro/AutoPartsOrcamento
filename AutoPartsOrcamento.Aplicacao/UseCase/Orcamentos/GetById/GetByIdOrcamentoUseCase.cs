@@ -30,6 +30,14 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
         {
             throw new NotFoundException("Orçamento não encontrado");
         }
+        
+        var valorTotalItems = orcamento.OrcamentoItems
+            .Sum(item => item.Quantidade * item.ValorVenda);
+
+        var valorTotalItemAvulsos = orcamento.OrcamentoItemAvulsos
+            .Sum(item => item.Quantidade * item.ValorVenda);
+
+        var total = valorTotalItems + valorTotalItemAvulsos;
 
         return new Response<ResponseOrcamentoJson>()
         {
@@ -91,7 +99,8 @@ public class GetByIdOrcamentoUseCase(AppDbContext dbContext)
                         CreatedAt = x.CreatedAt,
                         UpdatedAt = x.UpdatedAt
                     }).ToList(),
-                    Status = orcamento.Status.Nome,                   
+                    Status = orcamento.Status.Nome,    
+                    ValorTotal = total,
                     CreatedAt = orcamento.CreatedAt,
                     UpdatedAt = orcamento.UpdatedAt
                 }

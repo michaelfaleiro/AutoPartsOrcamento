@@ -44,6 +44,7 @@ public class GetByIdItemCotacaoUseCase(AppDbContext dbContext)
                 PrecoItemCotacoes = item.PrecoItemCotacoes.Select(x => new ResponsePrecoItemCotacaoJson
                 {
                     Id = x.Id,
+                    ItemId = x.CotacaoItem.Id,
                     QuantidadeAtendida = x.QuantidadeAtendida,
                     Sku = x.Sku,
                     Fabricante = x.Fabricante,

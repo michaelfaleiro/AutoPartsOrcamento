@@ -5,6 +5,7 @@ namespace AutoPartsOrcamento.Comunicacao.Response.Item;
 public class ResponsePrecoItemCotacaoJson
 {
     public Guid Id { get; set; }
+    public Guid ItemId { get; set; }
     public int QuantidadeAtendida { get; set; }
     public string Sku { get; set; } = string.Empty;
     public string Fabricante { get; set; } = string.Empty;

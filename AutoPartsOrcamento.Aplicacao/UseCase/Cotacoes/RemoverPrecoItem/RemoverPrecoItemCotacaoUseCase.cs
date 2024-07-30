@@ -13,19 +13,20 @@ public class RemoverPrecoItemCotacaoUseCase(AppDbContext dbContext)
     {
         Validate(request);
         
-        var cotacao = await _dbContext.Cotacao
-            .Include(c => c.CotacaoItems)
-            .FirstOrDefaultAsync(c => c.Id == request.CotacaoId);
-
-        if (cotacao is null)
-            throw new NotFoundException("Cotação não encontrada");
-        
-        var item = cotacao.CotacaoItems.FirstOrDefault(i => i.Id == request.ItemId);
-        
+        var item = await _dbContext.CotacaoItems
+            .Include(c => c.PrecoItemCotacoes)
+            .FirstOrDefaultAsync(c => c.Id == request.ItemId);
+       
+       
         if (item is null)
             throw new NotFoundException("Item não encontrado");
         
-        cotacao.CotacaoItems.Remove(item);
+        var precoItem = item.PrecoItemCotacoes.FirstOrDefault(p => p.Id == request.PrecoItemId);
+        
+        if (precoItem is null)
+            throw new NotFoundException("Preço do item não encontrado");
+        
+        item.PrecoItemCotacoes.Remove(precoItem);
         
         await _dbContext.SaveChangesAsync();
     }

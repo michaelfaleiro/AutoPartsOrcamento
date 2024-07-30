@@ -14,6 +14,7 @@ public class ResponseOrcamentoJson
     public IList<ResponseItemAvulsoJson> ItemAvulsos { get; set; } = [];
     public IList<ResponseCotacaoJson> Cotacoes { get; set; } = [];
     public string Status { get; set; } = string.Empty;
+    public decimal ValorTotal { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 }

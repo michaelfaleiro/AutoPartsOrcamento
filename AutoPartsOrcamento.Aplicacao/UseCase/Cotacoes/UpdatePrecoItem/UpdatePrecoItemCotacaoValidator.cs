@@ -10,12 +10,8 @@ public class UpdatePrecoItemCotacaoValidator : AbstractValidator<UpdatePrecoItem
         
         RuleFor(x=> x.PrecoItemId)
             .NotEmpty()
-            .WithMessage("Id não informado");
+            .WithMessage("PrecoItemId não informado");
         
-        RuleFor(x => x.CotacaoId)
-            .NotEmpty()
-            .WithMessage("Cotação não informada");
-
         RuleFor(x => x.ItemId)
             .NotEmpty()
             .WithMessage("Item não informado");
@@ -43,10 +39,6 @@ public class UpdatePrecoItemCotacaoValidator : AbstractValidator<UpdatePrecoItem
         RuleFor(x => x.PrazoExpedicao)
             .NotEmpty()
             .WithMessage("Prazo de expedição não informado");
-        
-        RuleFor(x => x.Observacao)
-            .NotEmpty()
-            .WithMessage("Observação não informada");
         
         RuleFor(x=> x.Fabricante)
             .NotEmpty()
